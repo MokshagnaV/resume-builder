@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { formToObj, parseEduDetails } from "../services/formatter";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { resumeActions } from "../store/resume";
 import { Delete, NavigateNext } from "@mui/icons-material";
 import {
@@ -60,6 +60,7 @@ const eduBox = (id) => {
         <Grid item xs={12} sm={6}>
           <Autocomplete
             options={["Percentage", "CGPA", "GPA"]}
+            autoHighlight
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -102,8 +103,6 @@ const EduDetails = (props) => {
 
   // const [errors, setErrors] = useState({});
 
-  const personalData = useSelector((state) => state.resume.eduDetails);
-  console.log(personalData);
   const addEduBox = () => {
     setEduCount(eduCount + 1);
     setEduBoxList([...eduBoxList, eduCount + 1]);
@@ -138,14 +137,16 @@ const EduDetails = (props) => {
           </Button>
         </Grid>
         <Grid item xs={6}>
-          <Button
-            variant="outlined"
-            onClick={removeBox}
-            startIcon={<Delete />}
-            fullWidth
-          >
-            Remove
-          </Button>
+          {eduCount > 1 && (
+            <Button
+              variant="outlined"
+              onClick={removeBox}
+              startIcon={<Delete />}
+              fullWidth
+            >
+              Remove
+            </Button>
+          )}
         </Grid>
         <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
           <Button
@@ -154,7 +155,7 @@ const EduDetails = (props) => {
             size="large"
             endIcon={<NavigateNext />}
           >
-            Submit
+            Next
           </Button>
         </Grid>
       </Grid>

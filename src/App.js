@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CreateResume from "./components/CreateResume";
 import Main from "./components/Main";
-// import EduDetails from "./components/eduDetails";
+import Preview from "./components/Preview";
 import { CssBaseline } from "@mui/material";
 import {
   ThemeProvider,
@@ -22,6 +22,7 @@ function App() {
           <Routes>
             <Route path="/" Component={Main} />
             <Route path="/create/*" element={<CreateResume />} />
+            <Route path="/preview" element={<Preview />} />
           </Routes>
         </Router>
       </ThemeProvider>

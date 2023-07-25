@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { formToObj } from "../services/formatter";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { resumeActions } from "../store/resume";
 import {
   Autocomplete,
@@ -25,9 +25,6 @@ const PersonalDetails = (props) => {
   };
 
   // const [errors, setErrors] = useState({});
-
-  const personalData = useSelector((state) => state.resume.setPersonalDetails);
-  console.log(personalData);
 
   return (
     <form ref={formRef} onSubmit={onNext}>
@@ -78,17 +75,10 @@ const PersonalDetails = (props) => {
             required
           />
         </Grid>
-        <Grid item xs={12}>
-          <TextField
-            name="address2"
-            id="address2"
-            label="Address 2 (Optional)"
-            fullWidth
-          />
-        </Grid>
         <Grid item xs={12} sm={6}>
           <Autocomplete
             options={["Kar", "MAl", "God"]}
+            autoHighlight
             renderInput={(params) => (
               <TextField
                 name="country"
@@ -104,6 +94,7 @@ const PersonalDetails = (props) => {
         <Grid item xs={12} sm={6}>
           <Autocomplete
             options={["DC", "WE", "Cal"]}
+            autoHighlight
             renderInput={(params) => (
               <TextField
                 id="state"
@@ -126,7 +117,7 @@ const PersonalDetails = (props) => {
             size="large"
             endIcon={<NavigateNext />}
           >
-            Submit
+            Next
           </Button>
         </Grid>
       </Grid>
