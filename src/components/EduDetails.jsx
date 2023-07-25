@@ -98,7 +98,7 @@ const EduDetails = (props) => {
     const form = formRef.current;
     const eduFormData = parseEduDetails(formToObj(form));
     dispatch(resumeActions.setEduDetails(eduFormData));
-    navigate("/create/2");
+    navigate("/create/3");
   };
 
   // const [errors, setErrors] = useState({});

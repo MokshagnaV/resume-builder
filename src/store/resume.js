@@ -2,7 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const resumeSlice = createSlice({
   name: "resume",
-  initialState: { personalDetails: {}, eduDetails: {}, skills: {} },
+  initialState: {
+    personalDetails: {},
+    eduDetails: {},
+    skills: {},
+    moreDetails: {},
+  },
   reducers: {
     setPersonalDetails(state, action) {
       state.personalDetails = action.payload;
@@ -12,6 +17,9 @@ const resumeSlice = createSlice({
     },
     setSkills(state, action) {
       state.skills = action.payload;
+    },
+    setMoreDetails(state, action) {
+      state.moreDetails = action.payload;
     },
   },
 });

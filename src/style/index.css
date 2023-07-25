@@ -1,0 +1,11 @@
+.resume {
+  width: 21.1cm;
+  height: 29.7cm;
+  /* change the margins as you want them to be. */
+  border: 1px solid #000;
+}
+.personalDetails {
+  padding: 1rem 0;
+  background-color: #7986cb;
+  color: #fff;
+}

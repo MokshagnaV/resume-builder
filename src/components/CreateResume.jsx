@@ -3,6 +3,7 @@ import PersonalDetails from "./personalDetails";
 import { Route, Routes } from "react-router-dom";
 import EduDetails from "./EduDetails";
 import Skills from "./Skills";
+import MoreDetails from "./MoreDetails";
 
 const CreateResume = (props) => {
   return (
@@ -25,8 +26,9 @@ const CreateResume = (props) => {
       >
         <Routes>
           <Route path="/" element={<PersonalDetails />} />
-          <Route path="/1" element={<EduDetails />} />
-          <Route path="/2" element={<Skills />} />
+          <Route path="/1" element={<MoreDetails />} />
+          <Route path="/2" element={<EduDetails />} />
+          <Route path="/3" element={<Skills />} />
         </Routes>
       </Paper>
     </Container>

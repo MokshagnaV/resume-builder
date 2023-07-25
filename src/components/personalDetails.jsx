@@ -24,6 +24,19 @@ const PersonalDetails = (props) => {
     navigate("/create/1");
   };
 
+  function onlyNumberKey(evt) {
+    var ASCIICode = evt.which ? evt.which : evt.keyCode;
+    if (
+      ASCIICode > 31 &&
+      (ASCIICode < 48 || ASCIICode > 57) &&
+      evt.target.value.length >= 10
+    ) {
+      evt.preventDefault();
+      return false;
+    }
+    return true;
+  }
+
   // const [errors, setErrors] = useState({});
 
   return (
@@ -68,6 +81,16 @@ const PersonalDetails = (props) => {
         </Grid>
         <Grid item xs={12}>
           <TextField
+            name="phone"
+            id="phone"
+            label="Phone No."
+            onKeyDown={onlyNumberKey}
+            fullWidth
+            required
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
             name="address"
             id="address"
             label="Address"
@@ -77,7 +100,7 @@ const PersonalDetails = (props) => {
         </Grid>
         <Grid item xs={12} sm={6}>
           <Autocomplete
-            options={["Kar", "MAl", "God"]}
+            options={["Kar", "MAl", "God", "India"]}
             autoHighlight
             renderInput={(params) => (
               <TextField
@@ -93,7 +116,7 @@ const PersonalDetails = (props) => {
 
         <Grid item xs={12} sm={6}>
           <Autocomplete
-            options={["DC", "WE", "Cal"]}
+            options={["DC", "WE", "Cal", "Maharashtra"]}
             autoHighlight
             renderInput={(params) => (
               <TextField
@@ -106,7 +129,6 @@ const PersonalDetails = (props) => {
             )}
           />
         </Grid>
-
         <Grid item xs={12}>
           <TextField name="zip" id="zip" label="Zip Code" required fullWidth />
         </Grid>
