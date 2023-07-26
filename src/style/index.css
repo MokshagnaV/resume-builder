@@ -1,13 +1,11 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.resume {
+  width: 21.1cm;
+  height: 29.7cm;
+  /* change the margins as you want them to be. */
+  border: 1px solid #000;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.personalDetails {
+  padding: 1rem 0;
+  background-color: #7986cb;
+  color: #fff;
 }
