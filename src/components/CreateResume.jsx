@@ -1,9 +1,5 @@
 import { Container, Paper, Typography } from "@mui/material";
-import PersonalDetails from "./personalDetails";
-import { Route, Routes } from "react-router-dom";
-import EduDetails from "./EduDetails";
-import Skills from "./Skills";
-import MoreDetails from "./MoreDetails";
+import HorizontalLinearStepper from "./HorizontalLinearStepper";
 
 const CreateResume = (props) => {
   return (
@@ -17,19 +13,14 @@ const CreateResume = (props) => {
         justifyContent: "center",
       }}
     >
-      <Typography variant="h3" component="h1">
-        Create Your Resume Here!!
-      </Typography>
       <Paper
         variant="outlined"
         sx={{ m: { xs: 2, sm: 4 }, p: { xs: 2, sm: 4 } }}
       >
-        <Routes>
-          <Route path="/" element={<PersonalDetails />} />
-          <Route path="/1" element={<MoreDetails />} />
-          <Route path="/2" element={<EduDetails />} />
-          <Route path="/3" element={<Skills />} />
-        </Routes>
+        <Typography variant="h3" component="h1" textAlign="center" gutterBottom>
+          Create Your Resume Here!!
+        </Typography>
+        <HorizontalLinearStepper />
       </Paper>
     </Container>
   );

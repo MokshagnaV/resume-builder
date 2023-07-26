@@ -3,6 +3,7 @@ import {
   Download,
   Email,
   GitHub,
+  Home,
   LinkedIn,
   Phone,
 } from "@mui/icons-material";
@@ -18,7 +19,7 @@ import {
   Button,
   Tooltip,
 } from "@mui/material";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { useSelector } from "react-redux";
 import { useReactToPrint } from "react-to-print";
 
@@ -30,7 +31,7 @@ const Preview = (props) => {
 
   const generatePdf = useReactToPrint({
     content: () => resumeRef.current,
-    documentTitle: "Societies list",
+    documentTitle: `${personalDetails.firstName} ${personalDetails.lastName}'s Resume`,
     onAfterPrint: () => alert("PDF Download initiated"),
   });
 
@@ -38,7 +39,6 @@ const Preview = (props) => {
     !(
       Object.keys(personalDetails).length &&
       Object.keys(eduDetails).length &&
-      Object.keys(skills).length &&
       Object.keys(moreDetails).length
     )
   ) {
@@ -132,79 +132,91 @@ const Preview = (props) => {
             ))}
           </Grid>
         </Container>
-        <Divider />
-        <Container sx={{ padding: 2 }}>
-          <Typography variant="h4" gutterBottom>
-            Skills
-          </Typography>
-          <Grid container spacing={2}>
-            <Grid item xs={6}>
-              <Typography variant="h5" gutterBottom>
-                Technical Skills
+        {Object.keys(skills).length !== 0 && (
+          <React.Fragment>
+            <Divider />
+            <Container sx={{ padding: 2 }}>
+              <Typography variant="h4" gutterBottom>
+                Skills
               </Typography>
-              <Stack spacing={1}>
-                {skills.programming && (
-                  <Stack direction="row" spacing={1}>
-                    <Typography sx={{ fontWeight: "500" }}>
-                      Programming:{" "}
-                    </Typography>
-                    <Typography>
-                      {skills.programming.map((pro, index) => {
-                        return skills.programming.length - 1 !== index
-                          ? pro.charAt(0).toUpperCase() + pro.slice(1) + ", "
-                          : pro.charAt(0).toUpperCase() + pro.slice(1);
-                      })}
-                    </Typography>
-                  </Stack>
-                )}
-                {skills.framework && (
-                  <Stack direction="row" spacing={1}>
-                    <Typography sx={{ fontWeight: "500" }}>
-                      Framework:{" "}
-                    </Typography>
-                    <Typography>
-                      {skills.framework.map((pro, index) => {
-                        return skills.framework.length - 1 !== index
-                          ? pro.charAt(0).toUpperCase() + pro.slice(1) + ", "
-                          : pro.charAt(0).toUpperCase() + pro.slice(1);
-                      })}
-                    </Typography>
-                  </Stack>
-                )}
-                {skills.tools && (
-                  <Stack direction="row" spacing={1}>
-                    <Typography sx={{ fontWeight: "500" }}>Tools: </Typography>
-                    <Typography>
-                      {skills.tools.map((pro, index) => {
-                        return skills.tools.length - 1 !== index
-                          ? pro.charAt(0).toUpperCase() + pro.slice(1) + ", "
-                          : pro.charAt(0).toUpperCase() + pro.slice(1);
-                      })}
-                    </Typography>
-                  </Stack>
-                )}
-              </Stack>
-            </Grid>
-            <Grid item xs={6}>
-              {skills.nonTech && (
-                <Box>
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
                   <Typography variant="h5" gutterBottom>
-                    Non - Technical Skills
+                    Technical Skills
                   </Typography>
-                  <Stack direction="column" spacing={1}>
-                    {skills.nonTech.map((pro, index) => {
-                      return (
-                        <Typography key={index}>
-                          {pro.charAt(0).toUpperCase() + pro.slice(1)}
+                  <Stack spacing={1}>
+                    {skills.programming && (
+                      <Stack direction="row" spacing={1}>
+                        <Typography sx={{ fontWeight: "500" }}>
+                          Programming:{" "}
                         </Typography>
-                      );
-                    })}
+                        <Typography>
+                          {skills.programming.map((pro, index) => {
+                            return skills.programming.length - 1 !== index
+                              ? pro.charAt(0).toUpperCase() +
+                                  pro.slice(1) +
+                                  ", "
+                              : pro.charAt(0).toUpperCase() + pro.slice(1);
+                          })}
+                        </Typography>
+                      </Stack>
+                    )}
+                    {skills.framework && (
+                      <Stack direction="row" spacing={1}>
+                        <Typography sx={{ fontWeight: "500" }}>
+                          Framework:{" "}
+                        </Typography>
+                        <Typography>
+                          {skills.framework.map((pro, index) => {
+                            return skills.framework.length - 1 !== index
+                              ? pro.charAt(0).toUpperCase() +
+                                  pro.slice(1) +
+                                  ", "
+                              : pro.charAt(0).toUpperCase() + pro.slice(1);
+                          })}
+                        </Typography>
+                      </Stack>
+                    )}
+                    {skills.tools && (
+                      <Stack direction="row" spacing={1}>
+                        <Typography sx={{ fontWeight: "500" }}>
+                          Tools:{" "}
+                        </Typography>
+                        <Typography>
+                          {skills.tools.map((pro, index) => {
+                            return skills.tools.length - 1 !== index
+                              ? pro.charAt(0).toUpperCase() +
+                                  pro.slice(1) +
+                                  ", "
+                              : pro.charAt(0).toUpperCase() + pro.slice(1);
+                          })}
+                        </Typography>
+                      </Stack>
+                    )}
                   </Stack>
-                </Box>
-              )}
-            </Grid>
-          </Grid>
-        </Container>
+                </Grid>
+                <Grid item xs={6}>
+                  {skills.nonTech && (
+                    <Box>
+                      <Typography variant="h5" gutterBottom>
+                        Non - Technical Skills
+                      </Typography>
+                      <Stack direction="column" spacing={1}>
+                        {skills.nonTech.map((pro, index) => {
+                          return (
+                            <Typography key={index}>
+                              {pro.charAt(0).toUpperCase() + pro.slice(1)}
+                            </Typography>
+                          );
+                        })}
+                      </Stack>
+                    </Box>
+                  )}
+                </Grid>
+              </Grid>
+            </Container>
+          </React.Fragment>
+        )}
         <Container sx={{ padding: 2, position: "absolute", bottom: 10 }}>
           <Stack direction="row" spacing={5} justifyContent="center">
             {moreDetails.linkedIn && (
@@ -234,7 +246,7 @@ const Preview = (props) => {
           </Stack>
         </Container>
       </Box>
-      <Stack margin={5} alignItems="center">
+      <Stack margin={5} spacing={2} alignItems="center">
         <Tooltip title="Download as PDF" placement="bottom">
           <Button
             variant="contained"
@@ -243,6 +255,17 @@ const Preview = (props) => {
             startIcon={<Download />}
           >
             Download
+          </Button>
+        </Tooltip>
+        <Tooltip title="Create another one" placement="bottom">
+          <Button
+            variant="contained"
+            component="a"
+            href="/"
+            size="large"
+            startIcon={<Home />}
+          >
+            Home Page
           </Button>
         </Tooltip>
       </Stack>

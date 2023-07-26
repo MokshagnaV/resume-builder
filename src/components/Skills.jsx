@@ -58,6 +58,7 @@ const Skills = (props) => {
   const handleNext = () => {
     navigate("/preview");
     dispatch(resumeActions.setSkills(skillData));
+    props.handleNext();
   };
 
   return (

@@ -23,7 +23,7 @@ const Main = () => {
         Resume Builder
       </Typography>
       <Typography paragraph textAlign="center">
-        Build your resume with less efforts. Don't worry about the design. just
+        Build your resume with less efforts. Don't worry about the design. Just
         give us the details, we'll take care of the rest!
       </Typography>
       <Button variant="contained" onClick={handleClick}>

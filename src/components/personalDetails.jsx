@@ -1,27 +1,19 @@
 import { useRef } from "react";
 import { formToObj } from "../services/formatter";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { resumeActions } from "../store/resume";
-import {
-  Autocomplete,
-  Button,
-  Grid,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, Grid, TextField, Typography } from "@mui/material";
 import { NavigateNext } from "@mui/icons-material";
 
 const PersonalDetails = (props) => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const formRef = useRef();
   const onNext = (e) => {
     e.preventDefault();
     const form = formRef.current;
-    console.log(formToObj(form));
     dispatch(resumeActions.setPersonalDetails(formToObj(form)));
-    navigate("/create/1");
+
+    props.handleNext();
   };
 
   function onlyNumberKey(evt) {
@@ -36,6 +28,7 @@ const PersonalDetails = (props) => {
     }
     return true;
   }
+  console.log(props);
 
   // const [errors, setErrors] = useState({});
 
@@ -99,35 +92,17 @@ const PersonalDetails = (props) => {
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Autocomplete
-            options={["Kar", "MAl", "God", "India"]}
-            autoHighlight
-            renderInput={(params) => (
-              <TextField
-                name="country"
-                id="country"
-                {...params}
-                label={"Country"}
-                required
-              />
-            )}
+          <TextField
+            name="country"
+            id="country"
+            label="Country"
+            fullWidth
+            required
           />
         </Grid>
 
         <Grid item xs={12} sm={6}>
-          <Autocomplete
-            options={["DC", "WE", "Cal", "Maharashtra"]}
-            autoHighlight
-            renderInput={(params) => (
-              <TextField
-                id="state"
-                name="state"
-                {...params}
-                label={"State"}
-                required
-              />
-            )}
-          />
+          <TextField id="state" name="state" label="State" fullWidth required />
         </Grid>
         <Grid item xs={12}>
           <TextField name="zip" id="zip" label="Zip Code" required fullWidth />

@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import { formToObj } from "../services/formatter";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { resumeActions } from "../store/resume";
 import {
@@ -22,7 +21,6 @@ import { useState } from "react";
 
 const MoreDetails = (props) => {
   const [imgSrc, setImgSrc] = useState("");
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const formRef = useRef();
   const onNext = (e) => {
@@ -33,7 +31,7 @@ const MoreDetails = (props) => {
       formData.photo = imgSrc;
     }
     dispatch(resumeActions.setMoreDetails(formData));
-    navigate("/create/2");
+    props.handleNext();
   };
 
   const handleChange = (e) => {

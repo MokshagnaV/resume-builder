@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import { formToObj, parseEduDetails } from "../services/formatter";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { resumeActions } from "../store/resume";
 import { Delete, NavigateNext } from "@mui/icons-material";
@@ -90,7 +89,6 @@ const eduBox = (id) => {
 const EduDetails = (props) => {
   const [eduCount, setEduCount] = useState(1);
   const [eduBoxList, setEduBoxList] = useState([1]);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const formRef = useRef();
   const onNext = (e) => {
@@ -98,9 +96,10 @@ const EduDetails = (props) => {
     const form = formRef.current;
     const eduFormData = parseEduDetails(formToObj(form));
     dispatch(resumeActions.setEduDetails(eduFormData));
-    navigate("/create/3");
+    props.handleNext();
   };
 
+  // const data = useSelector();
   // const [errors, setErrors] = useState({});
 
   const addEduBox = () => {
